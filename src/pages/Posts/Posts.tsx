@@ -12,6 +12,9 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import Spinner from 'react-bootstrap/Spinner';
 import {Row, Col, Container} from 'react-bootstrap';
 import {appSetStatusAC} from '../../store/app-reducer';
+import Accordion from 'react-bootstrap/Accordion';
+import {useAccordionButton} from 'react-bootstrap/AccordionButton';
+import {CommentsAccordionBody} from '../../components/CommentsAccordion/CommentsAccordionBody';
 
 export const Posts = () => {
 
@@ -43,29 +46,34 @@ export const Posts = () => {
             {
                 posts.map((post: PostType) => {
                     return (
-                        <Row key={post.id}
-                             style={{marginBottom: '15px', padding: '5px',
-                                 border: '1px solid black', borderRadius: '10px'}}
-                        >
-                            <Col md={1}>
-                                <OverlayTrigger
-                                    placement="right"
-                                    delay={{show: 150, hide: 200}}
-                                    overlay={renderTooltip}
-                                >
-                                    <Card.Img src={Avatar}
-                                              style={{cursor: 'pointer'}}
-                                              onClick={() => {
-                                                  navigate(`/users/${post.userId}`)
-                                              }}
-                                    />
-                                </OverlayTrigger>
-                            </Col>
-                            <Col md={11}>
-                                <Card.Title>{post.title}</Card.Title>
-                                <Card.Text>{post.body}</Card.Text>
-                            </Col>
-                        </Row>
+                        <>
+                            <Row key={post.id}
+                                 style={{
+                                     marginBottom: '15px', padding: '5px',
+                                     border: '1px solid black', borderRadius: '10px'
+                                 }}
+                            >
+                                <Col md={1}>
+                                    <OverlayTrigger
+                                        placement="right"
+                                        delay={{show: 150, hide: 200}}
+                                        overlay={renderTooltip}
+                                    >
+                                        <Card.Img src={Avatar}
+                                                  style={{cursor: 'pointer'}}
+                                                  onClick={() => {
+                                                      navigate(`/users/${post.userId}`)
+                                                  }}
+                                        />
+                                    </OverlayTrigger>
+                                </Col>
+                                <Col md={11}>
+                                    <Card.Title>{post.title}</Card.Title>
+                                    <Card.Text>{post.body}</Card.Text>
+                                    <CommentsAccordionBody/>
+                                </Col>
+                            </Row>
+                        </>
                     )
                 })
             }
