@@ -3,6 +3,7 @@ import {PostType, UserType} from '../types/types';
 
 const instance = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com/',
+    // timeout: 5000
 })
 
 export const mitraSoftAPI = {

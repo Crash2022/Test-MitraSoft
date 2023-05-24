@@ -9,7 +9,7 @@ import MyAvatar from '../../shared/assets/my-avatar300.jpg'
 
 export const NavbarComponent = () => {
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{width: '100%'}}>
             <Container>
                 <Navbar.Brand>МитраСОФТ</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />

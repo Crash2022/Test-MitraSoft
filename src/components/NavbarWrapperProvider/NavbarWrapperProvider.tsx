@@ -7,9 +7,9 @@ type NavbarWrapperProviderProps = {
 
 export const NavbarWrapperProvider: React.FC<NavbarWrapperProviderProps> = ({children}) => {
     return (
-        <>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <NavbarComponent/>
-            <div>{children}</div>
-        </>
+            <div style={{marginTop: '30px'}}>{children}</div>
+        </div>
     )
 }
