@@ -11,6 +11,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Spinner from 'react-bootstrap/Spinner';
 import {Row, Col, Container} from 'react-bootstrap';
+import {appSetStatusAC} from '../../store/app-reducer';
 
 export const Posts = () => {
 
@@ -26,7 +27,13 @@ export const Posts = () => {
     )
 
     useEffect(() => {
-        dispatch(getPostsTC())
+        dispatch(appSetStatusAC('loading'))
+
+        const timer = setTimeout(() => {
+            dispatch(getPostsTC())
+        }, 1000)
+
+        return () => clearTimeout(timer)
     }, [])
 
     if (status === 'loading') return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>

@@ -50,9 +50,9 @@ button::-moz-focus-inner {
     border: 0;
 }
 
-ul li {
-    list-style: none;
-}
+/*ul li {*/
+/*    list-style: none;*/
+/*}*/
 
 img {
     vertical-align: top;
