@@ -27,7 +27,7 @@ export const postsReducer = (state: InitialStateType = initialState,
             return {...state, userProfile: action.user}
         }
         case 'POSTS/SET_USER_POSTS': {
-            return {...state, userPosts: action.posts}
+            return {...state, userPosts: state.allPosts.filter(p => p.userId === action.userId)}
         }
         default:
             return state
@@ -50,8 +50,8 @@ export const setUserAC = (user: UserType) => ({
 } as const)
 
 export type SetUserPostsACType = ReturnType<typeof setUserPostsAC>
-export const setUserPostsAC = (posts: PostType[]) => ({
-    type: 'POSTS/SET_USER_POSTS', posts
+export const setUserPostsAC = (userId: number) => ({
+    type: 'POSTS/SET_USER_POSTS', userId
 } as const)
 
 /*-----------------------------------------------------------------------------------*/

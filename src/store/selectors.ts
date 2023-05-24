@@ -6,6 +6,7 @@ export const selectAppError = (state: AppRootStateType) => state.app.error
 
 export const selectPosts = (state: AppRootStateType) => state.posts.allPosts
 export const selectUser = (state: AppRootStateType) => state.posts.userProfile
+export const selectUserPosts = (state: AppRootStateType) => state.posts.userPosts
 // export const selectUser = (state: AppRootStateType) => state.user.userProfile
 
 // selector for saga

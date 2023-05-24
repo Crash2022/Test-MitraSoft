@@ -36,7 +36,10 @@ export const Posts = () => {
             {
                 posts.map((post: PostType) => {
                     return (
-                        <Row key={post.id} style={{marginBottom: '15px', border: '1px solid black', padding: '5px', borderRadius: '10px'}}>
+                        <Row key={post.id}
+                             style={{marginBottom: '15px', padding: '5px',
+                                 border: '1px solid black', borderRadius: '10px'}}
+                        >
                             <Col md={1}>
                                 <OverlayTrigger
                                     placement="right"
