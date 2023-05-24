@@ -11,5 +11,11 @@ export const mitraSoftAPI = {
             instance
                 .get<Array<PostType>>('posts?_limit=20', {})
         )
+    },
+    getPost(postId: number): Promise<AxiosResponse<PostType>> {
+        return (
+            instance
+                .get<PostType>(`posts/${postId}`, {})
+        )
     }
 }

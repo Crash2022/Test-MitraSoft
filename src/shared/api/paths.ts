@@ -1,6 +1,6 @@
 export const RoutePaths = {
     HOME: '/',
-    POST: '/post',
+    POST: '/posts/:postId',
     ABOUT: '/about',
     ERROR404: '/404'
 }

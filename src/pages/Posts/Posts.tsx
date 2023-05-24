@@ -4,10 +4,12 @@ import {useAppDispatch} from "../../shared/hooks/useAppDispatch";
 import {useAppSelector} from "../../shared/hooks/useAppSelector";
 import {selectPosts} from "../../store/selectors";
 import {getPostsTC} from "../../store/posts-reducer";
+import {useNavigate} from "react-router-dom";
 
 export const Posts = () => {
 
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const posts = useAppSelector(selectPosts)
 
     useEffect(() => {
@@ -17,9 +19,13 @@ export const Posts = () => {
     return (
         <div>
             {
-                posts.map((p: PostType) => {
+                posts.map((post: PostType) => {
                     return (
-                        <div key={p.id}>{p.title}</div>
+                        <div key={post.id}
+                             onClick={() => {navigate(`/posts/${post.id}`)}}
+                        >
+                            {post.title}
+                        </div>
                     )
                 })
             }
