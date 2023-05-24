@@ -1,5 +1,5 @@
 import React, {ReactElement} from 'react';
-import {Navbar} from "../Navbar/Navbar";
+import {NavbarComponent} from "../NavbarComponent/NavbarComponent";
 
 type NavbarWrapperProviderProps = {
     children: ReactElement
@@ -8,7 +8,7 @@ type NavbarWrapperProviderProps = {
 export const NavbarWrapperProvider: React.FC<NavbarWrapperProviderProps> = ({children}) => {
     return (
         <>
-            <Navbar/>
+            <NavbarComponent/>
             <div>{children}</div>
         </>
     )

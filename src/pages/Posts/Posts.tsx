@@ -17,7 +17,7 @@ export const Posts = () => {
     }, [])
 
     return (
-        <div>
+        <div style={{marginTop: '40px'}}>
             {
                 posts.map((post: PostType) => {
                     return (
