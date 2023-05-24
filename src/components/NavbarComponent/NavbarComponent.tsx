@@ -17,7 +17,7 @@ export const NavbarComponent = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <NavDropdown title="Меню" id="collasible-nav-dropdown" style={{width: '350px'}}>
-                            <NavDropdown.Item href={RoutePaths.HOME}>Посты</NavDropdown.Item>
+                            <NavDropdown.Item href={RoutePaths.HOME}>Список постов</NavDropdown.Item>
                             {/*<NavDropdown.Item href={RoutePaths.ABOUT}>Обо мне</NavDropdown.Item>*/}
                             <NavDropdown.Item href={RoutePaths.ABOUT}>
                                 <div style={{border: '1px solid black', padding: '5px', borderRadius: '5px',
