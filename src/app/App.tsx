@@ -10,7 +10,7 @@ import {Posts} from '../pages/Posts/Posts';
 import {User} from '../pages/User/User';
 import {Error404} from '../shared/error404/Error404';
 import Container from 'react-bootstrap/Container';
-// import {Post} from "../pages/Post/Post";
+// import {PostItem} from "../pages/PostItem/PostItem";
 
 export const App = () => {
 
@@ -20,7 +20,7 @@ export const App = () => {
             <RouterProvider router={routes}/>
             {/*<Routes>*/}
             {/*    <Route path={RoutePaths.HOME} element={<Posts/>}/>*/}
-            {/*    /!*<Route path={RoutePaths.POST} element={<Post/>}/>*!/*/}
+            {/*    /!*<Route path={RoutePaths.POST} element={<PostItem/>}/>*!/*/}
             {/*    <Route path={RoutePaths.USER} element={<User/>}/>*/}
             {/*    <Route path={RoutePaths.ABOUT} element={<About/>}/>*/}
             {/*    <Route path={RoutePaths.ERROR404} element={<Error404 />} />*/}

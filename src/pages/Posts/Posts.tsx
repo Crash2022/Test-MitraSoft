@@ -4,28 +4,16 @@ import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {useAppSelector} from '../../shared/hooks/useAppSelector';
 import {selectAppStatus, selectPosts} from '../../store/selectors';
 import {getPostsTC} from '../../store/posts-reducer';
-import {useNavigate} from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import Avatar from '../../shared/assets/avatar-04.svg';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
 import Spinner from 'react-bootstrap/Spinner';
-import {Row, Col, Container} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import {appSetStatusAC} from '../../store/app-reducer';
-import {CommentsAccordionBody} from '../../components/CommentsAccordion/CommentsAccordionBody';
+import {PostItem} from '../../components/PostItem/PostItem';
 
 export const Posts = () => {
 
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
-    const posts = useAppSelector(selectPosts)
     const status = useAppSelector(selectAppStatus)
-
-    const renderTooltip = (props: any) => (
-        <Tooltip id="user-image-tooltip" {...props}>
-            Посмотреть профиль пользователя
-        </Tooltip>
-    )
+    const posts = useAppSelector(selectPosts)
 
     useEffect(() => {
         dispatch(appSetStatusAC('loading'))
@@ -44,34 +32,9 @@ export const Posts = () => {
             {
                 posts.map((post: PostType) => {
                     return (
-                        <>
-                            <Row key={post.id}
-                                 style={{
-                                     marginBottom: '15px', padding: '5px',
-                                     border: '1px solid black', borderRadius: '10px'
-                                 }}
-                            >
-                                <Col md={1}>
-                                    <OverlayTrigger
-                                        placement="right"
-                                        delay={{show: 150, hide: 200}}
-                                        overlay={renderTooltip}
-                                    >
-                                        <Card.Img src={Avatar}
-                                                  style={{cursor: 'pointer'}}
-                                                  onClick={() => {
-                                                      navigate(`/users/${post.userId}`)
-                                                  }}
-                                        />
-                                    </OverlayTrigger>
-                                </Col>
-                                <Col md={11}>
-                                    <Card.Title>{post.title}</Card.Title>
-                                    <Card.Text>{post.body}</Card.Text>
-                                    <CommentsAccordionBody postId={post.id}/>
-                                </Col>
-                            </Row>
-                        </>
+                        <div key={post.id}>
+                            <PostItem post={post}/>
+                        </div>
                     )
                 })
             }

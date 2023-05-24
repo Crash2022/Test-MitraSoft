@@ -2,23 +2,14 @@ import React, {useEffect} from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import {ContextAwareToggle} from './ContextAwareToggle';
-import {getPostCommentsTC} from '../../store/posts-reducer';
-import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
-import {useAppSelector} from '../../shared/hooks/useAppSelector';
-import {selectPostComments} from '../../store/selectors';
+import {CommentType} from '../../shared/types/types';
+import {CommentItem} from '../CommentItem/CommentItem';
 
 type CommentsAccordionBodyProps = {
-    postId: number
+    comments: CommentType[]
 }
 
-export const CommentsAccordionBody = ({postId}: CommentsAccordionBodyProps) => {
-
-    const dispatch = useAppDispatch()
-    const comments = useAppSelector(selectPostComments)
-
-    useEffect(() => {
-        // dispatch(getPostCommentsTC(postId))
-    }, [])
+export const CommentsAccordionBody = ({comments}: CommentsAccordionBodyProps) => {
 
     return (
         <Accordion>
@@ -28,13 +19,25 @@ export const CommentsAccordionBody = ({postId}: CommentsAccordionBodyProps) => {
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>
+                        {/*Comments*/}
+
+                        {/*{*/}
+                        {/*    comments && comments.map((com: any) => {*/}
+                        {/*        return (*/}
+                        {/*            <div>*/}
+                        {/*                <Card.Title>{com.email}</Card.Title>*/}
+                        {/*                <Card.Text>{com.body}</Card.Text>*/}
+                        {/*            </div>*/}
+                        {/*        )*/}
+                        {/*    })*/}
+                        {/*}*/}
+
                         {
-                            comments && comments.map(com => {
+                            comments.map(com => {
                                 return (
-                                    <div>
-                                        <Card.Title>{com.email}</Card.Title>
-                                        <Card.Text>{com.body}</Card.Text>
-                                    </div>
+                                    <CommentItem key={com.id}
+                                                 comment={com}
+                                    />
                                 )
                             })
                         }
