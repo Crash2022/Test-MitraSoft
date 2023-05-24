@@ -1,29 +1,21 @@
 import './App.css';
-import React, { useEffect } from 'react';
-import { useAppDispatch } from '../shared/hooks/useAppDispatch';
-import { useAppSelector } from '../shared/hooks/useAppSelector';
-import { getPostsTC } from '../store/posts-reducer';
-import { selectPosts } from '../store/selectors';
-import { PostType } from '../shared/types/types';
+import React from 'react';
+import {RoutePaths} from "../shared/api/paths";
+import {Navigate, Route, Routes} from "react-router-dom";
+import {About} from "../pages/About/About";
+import {Posts} from "../pages/Posts/Posts";
+import {Error404} from "../shared/error404/Error404";
 
 export const App = () => {
 
-    const dispatch = useAppDispatch()
-    const posts = useAppSelector(selectPosts)
-
-    useEffect(() => {
-        dispatch(getPostsTC())
-    }, [])
-
     return (
         <div className="App">
-            {
-                posts.map((p: PostType) => {
-                    return (
-                        <div key={p.id}>{p.title}</div>
-                    )
-                })
-            }
+            <Routes>
+                <Route path={RoutePaths.HOME} element={<Posts/>}/>
+                <Route path={RoutePaths.ABOUT} element={<About/>}/>
+                <Route path={RoutePaths.ERROR404} element={<Error404 />} />
+                <Route path={'*'} element={<Navigate to={RoutePaths.ERROR404} />} />
+            </Routes>
         </div>
     )
 }

@@ -1,8 +1,7 @@
 import {appSetErrorAC, appSetStatusAC} from './app-reducer';
 import {call, put, takeEvery} from 'redux-saga/effects';
-import {AxiosError, AxiosResponse} from 'axios';
+import {AxiosResponse} from 'axios';
 import {PostType} from '../shared/types/types';
-import {handleServerNetworkErrorSaga} from '../shared/utils/errorUtils';
 import {mitraSoftAPI} from '../shared/api/api';
 
 // reducer
@@ -45,6 +44,9 @@ export function* getPostsTC_WorkerSaga(action: ReturnType<typeof getPostsTC>): a
         yield put(appSetStatusAC('succeeded'))
     } catch (error) {
         console.log(error)
-        // yield* handleServerNetworkErrorSaga(error as AxiosError)
+        yield put(appSetErrorAC('Some error occurred'))
+        yield put(appSetStatusAC('failed'))
+    } finally {
+        yield put(appSetStatusAC('idle'))
     }
 }
