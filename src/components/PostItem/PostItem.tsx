@@ -20,7 +20,7 @@ export const PostItem = ({post}: PostItemProps) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>(state => state.comments[post.id]);
+    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>(state => state.comments[post.id])
 
     const renderTooltip = (props: any) => (
         <Tooltip id="user-image-tooltip" {...props}>
@@ -57,7 +57,15 @@ export const PostItem = ({post}: PostItemProps) => {
                 <Col md={11}>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>{post.body}</Card.Text>
-                    <CommentsAccordionBody comments={commentsObj}/>
+                    {/*<CommentsAccordionBody comments={commentsObj}/>*/}
+
+                    {
+                        commentsObj.map(comment => {
+                            return (
+                                <CommentsAccordionBody key={comment.id} comment={comment}/>
+                            )
+                        })
+                    }
                 </Col>
             </Row>
         </>

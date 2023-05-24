@@ -15,9 +15,9 @@ export const commentsReducer = (state: CommentsInitialStateType = initialState,
                                  action: CommentsActionTypes): CommentsInitialStateType => {
     switch (action.type) {
         case 'COMMENTS/SET_POST_COMMENTS': {
-            const copyState = {...state};
-            copyState[action.postId] = action.comments;
-            return copyState;
+            const copyState = {...state}
+            copyState[action.postId] = action.comments
+            return copyState
         }
         default:
             return state

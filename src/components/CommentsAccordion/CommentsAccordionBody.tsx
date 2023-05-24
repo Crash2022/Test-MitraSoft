@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import {ContextAwareToggle} from './ContextAwareToggle';
 import {CommentType} from '../../shared/types/types';
-import {CommentItem} from '../CommentItem/CommentItem';
 
 type CommentsAccordionBodyProps = {
-    comments: CommentType[]
+    // comments: CommentType[]
+    comment: CommentType
 }
 
-export const CommentsAccordionBody = ({comments}: CommentsAccordionBodyProps) => {
+export const CommentsAccordionBody = ({comment}: CommentsAccordionBodyProps) => {
 
     return (
         <Accordion>
@@ -32,15 +32,19 @@ export const CommentsAccordionBody = ({comments}: CommentsAccordionBodyProps) =>
                         {/*    })*/}
                         {/*}*/}
 
-                        {
-                            comments.map(com => {
-                                return (
-                                    <CommentItem key={com.id}
-                                                 comment={com}
-                                    />
-                                )
-                            })
-                        }
+                        {/*{*/}
+                        {/*    comments.map(com => {*/}
+                        {/*        return (*/}
+                        {/*            <CommentItem key={com.id}*/}
+                        {/*                         comment={com}*/}
+                        {/*            />*/}
+                        {/*        )*/}
+                        {/*    })*/}
+                        {/*}*/}
+
+                        <Card.Title>{comment.email}</Card.Title>
+                        <Card.Text>{comment.body}</Card.Text>
+
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
