@@ -10,6 +10,7 @@ import Avatar from '../../shared/assets/avatar-04.svg';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Spinner from 'react-bootstrap/Spinner';
+import {Row, Col, Container} from 'react-bootstrap';
 
 export const Posts = () => {
 
@@ -31,36 +32,37 @@ export const Posts = () => {
     if (status === 'loading') return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
 
     return (
-        <div>
+        <Container>
             {
                 posts.map((post: PostType) => {
                     return (
-                        <div key={post.id}>
-                            <Card style={{width: '15rem'}}>
-                                <Card.Body>
-                                    <OverlayTrigger
-                                        placement="right"
-                                        delay={{show: 250, hide: 400}}
-                                        overlay={renderTooltip}
-                                    >
-                                        <Card.Img variant="top"
-                                                  src={Avatar}
-                                                  onClick={() => {
-                                                      navigate(`/users/${post.userId}`)
-                                                  }}
-                                                  style={{cursor: 'pointer'}}
-                                        />
-                                    </OverlayTrigger>
-                                    <Card.Title>{post.title}</Card.Title>
-                                    <Card.Text>
-                                        {post.body}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </div>
+                        <Row key={post.id} style={{marginBottom: '15px', border: '1px solid black', padding: '5px', borderRadius: '10px'}}>
+                            <Col md={1}>
+                                <OverlayTrigger
+                                    placement="right"
+                                    delay={{show: 250, hide: 400}}
+                                    overlay={renderTooltip}
+                                >
+                                    <Card.Img variant="top"
+                                              src={Avatar}
+                                              onClick={() => {
+                                                  navigate(`/users/${post.userId}`)
+                                              }}
+                                              style={{cursor: 'pointer'}}
+                                    />
+                                </OverlayTrigger>
+                            </Col>
+
+                            <Col md={11}>
+                                <Card.Title>{post.title}</Card.Title>
+                                <Card.Text>
+                                    {post.body}
+                                </Card.Text>
+                            </Col>
+                        </Row>
                     )
                 })
             }
-        </div>
+        </Container>
     )
 }
