@@ -11,11 +11,11 @@ export const NavbarComponent = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand>MitraSoft</Navbar.Brand>
+                <Navbar.Brand>МитраСОФТ</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                        <NavDropdown title="Меню" id="collasible-nav-dropdown">
                             <NavDropdown.Item href={RoutePaths.HOME}>Посты</NavDropdown.Item>
                             <NavDropdown.Item href={RoutePaths.ABOUT}>Обо мне</NavDropdown.Item>
 

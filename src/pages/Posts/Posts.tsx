@@ -26,7 +26,10 @@ export const Posts = () => {
                         <div key={post.id}>
                             <Card style={{width: '15rem'}}>
                                 <Card.Body>
-                                    <Card.Img variant="top" src={Avatar}/>
+                                    <Card.Img variant="top"
+                                              src={Avatar}
+                                              onClick={() => {navigate(`/users/${post.userId}`)}}
+                                    />
                                     <Card.Title>{post.title}</Card.Title>
                                     <Card.Text>
                                         {post.body}
