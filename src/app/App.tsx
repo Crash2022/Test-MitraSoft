@@ -1,7 +1,8 @@
-import './App.css';
+// import './App.css';
 import React from 'react';
-import {RouterProvider} from "react-router-dom"
+import {RouterProvider} from "react-router-dom";
 import {routes} from "../shared/api/routes";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {RoutePaths} from "../shared/api/paths";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {About} from "../pages/About/About";
