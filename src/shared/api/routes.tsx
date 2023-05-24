@@ -13,13 +13,13 @@ export const routes = createBrowserRouter([
         </NavbarWrapperProvider>
     },
     {
-        path: RoutePaths.HOME,
+        path: RoutePaths.USER,
         element: <NavbarWrapperProvider>
             <User/>
         </NavbarWrapperProvider>
     },
     {
-        path: RoutePaths.HOME,
+        path: RoutePaths.ABOUT,
         element: <NavbarWrapperProvider>
             <About/>
         </NavbarWrapperProvider>
