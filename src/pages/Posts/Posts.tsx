@@ -25,6 +25,8 @@ export const Posts = () => {
         return () => clearTimeout(timer)
     }, [])
 
+    console.log('posts', posts)
+
     if (status === 'loading') return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
 
     return (

@@ -32,6 +32,8 @@ export const PostItem = ({post}: PostItemProps) => {
         dispatch(getPostCommentsTC(post.id))
     }, [])
 
+    console.log('commentsObj', commentsObj)
+
     return (
         <>
             <Row key={post.id}
