@@ -12,8 +12,6 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import Spinner from 'react-bootstrap/Spinner';
 import {Row, Col, Container} from 'react-bootstrap';
 import {appSetStatusAC} from '../../store/app-reducer';
-import Accordion from 'react-bootstrap/Accordion';
-import {useAccordionButton} from 'react-bootstrap/AccordionButton';
 import {CommentsAccordionBody} from '../../components/CommentsAccordion/CommentsAccordionBody';
 
 export const Posts = () => {
@@ -70,7 +68,7 @@ export const Posts = () => {
                                 <Col md={11}>
                                     <Card.Title>{post.title}</Card.Title>
                                     <Card.Text>{post.body}</Card.Text>
-                                    <CommentsAccordionBody/>
+                                    <CommentsAccordionBody postId={post.id}/>
                                 </Col>
                             </Row>
                         </>
