@@ -40,11 +40,10 @@ export const Posts = () => {
                             <Col md={1}>
                                 <OverlayTrigger
                                     placement="right"
-                                    delay={{show: 250, hide: 400}}
+                                    delay={{show: 150, hide: 200}}
                                     overlay={renderTooltip}
                                 >
-                                    <Card.Img variant="top"
-                                              src={Avatar}
+                                    <Card.Img src={Avatar}
                                               style={{cursor: 'pointer'}}
                                               onClick={() => {
                                                   navigate(`/users/${post.userId}`)

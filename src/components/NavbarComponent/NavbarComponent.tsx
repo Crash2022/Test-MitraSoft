@@ -6,7 +6,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Card from 'react-bootstrap/Card';
 import MyAvatar from '../../shared/assets/my-avatar300.jpg'
-import {Col, Row} from 'react-bootstrap';
 
 export const NavbarComponent = () => {
     return (
@@ -20,7 +19,7 @@ export const NavbarComponent = () => {
                             <NavDropdown.Item href={RoutePaths.HOME}>Список постов</NavDropdown.Item>
                             {/*<NavDropdown.Item href={RoutePaths.ABOUT}>Обо мне</NavDropdown.Item>*/}
                             <NavDropdown.Item href={RoutePaths.ABOUT}>
-                                <div style={{border: '1px solid black', padding: '5px', borderRadius: '5px',
+                                <div style={{border: '1px solid gray', padding: '5px', borderRadius: '5px',
                                     display: 'flex', alignItems: 'center', gap: '10px'}}
                                 >
                                     <div>

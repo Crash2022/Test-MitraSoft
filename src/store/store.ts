@@ -4,7 +4,6 @@ import {PostsActionTypes, postsReducer, postsWatcherSaga} from './posts-reducer'
 import {ApplicationActionTypes, appReducer} from './app-reducer';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
-import {UserActionTypes, userReducer, userWatcherSaga} from "./user-reducer";
 
 /*------------------------------------------------------------*/
 
@@ -24,8 +23,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     app: appReducer,
-    posts: postsReducer,
-    user: userReducer
+    posts: postsReducer
+    // user: userReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()
@@ -39,16 +38,16 @@ export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppRootSta
 
 export type AppActionType =
     ApplicationActionTypes |
-    PostsActionTypes |
-    UserActionTypes
+    PostsActionTypes
+    // UserActionTypes
 
 // saga
 sagaMiddleware.run(rootWatcher)
 
 function* rootWatcher() {
     yield all([
-        postsWatcherSaga(),
-        userWatcherSaga()
+        postsWatcherSaga()
+        // userWatcherSaga()
     ])
 }
 /*------------------------------------------------------------*/
