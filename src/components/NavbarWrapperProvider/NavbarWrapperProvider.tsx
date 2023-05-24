@@ -1,11 +1,11 @@
 import React, {ReactElement} from 'react';
 import {Navbar} from "../Navbar/Navbar";
 
-type NavbarWrapperProps = {
+type NavbarWrapperProviderProps = {
     children: ReactElement
 }
 
-export const NavbarWrapper = ( {children}:NavbarWrapperProps ) => {
+export const NavbarWrapperProvider: React.FC<NavbarWrapperProviderProps> = ({children}) => {
     return (
         <>
             <Navbar/>
