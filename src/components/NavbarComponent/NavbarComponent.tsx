@@ -1,10 +1,11 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
 import {RoutePaths} from "../../shared/api/paths";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Card from 'react-bootstrap/Card';
+import MyAvatar from '../../shared/assets/my-avatar300.jpg'
 
 export const NavbarComponent = () => {
     return (
@@ -17,23 +18,20 @@ export const NavbarComponent = () => {
                         <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                             <NavDropdown.Item href={RoutePaths.HOME}>Посты</NavDropdown.Item>
                             <NavDropdown.Item href={RoutePaths.ABOUT}>Обо мне</NavDropdown.Item>
+
+                            <Card style={{ width: '15rem' }}>
+                                <Card.Body>
+                                    <Card.Img variant="top" width={100} src={MyAvatar}/>
+                                    <Card.Title>Чашин Александр</Card.Title>
+                                    <Card.Text>
+                                        ManForCoding@gmail.com
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-
-        // <Dropdown>
-        //     <Dropdown.Toggle variant="primary" id="dropdown-basic">
-        //         Меню
-        //     </Dropdown.Toggle>
-        //
-        //     <Dropdown.Menu>
-        //         <Dropdown.Item>Чашин Александр</Dropdown.Item>
-        //         <Dropdown.Item>ManForCoding@gmail.com</Dropdown.Item>
-        //         <Dropdown.Item href={RoutePaths.HOME}>Посты</Dropdown.Item>
-        //         <Dropdown.Item href={RoutePaths.ABOUT}>Обо мне</Dropdown.Item>
-        //     </Dropdown.Menu>
-        // </Dropdown>
     )
 }
