@@ -1,15 +1,15 @@
 import axios, {AxiosResponse} from 'axios';
-import {PostType, UserType} from '../types/types';
+import {CommentType, PostType, UserType} from '../types/types';
 
 const instance = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com/',
 })
 
 export const mitraSoftAPI = {
-    getPosts(): Promise<AxiosResponse<Array<PostType>>> {
+    getPosts(): Promise<AxiosResponse<PostType[]>> {
         return (
             instance
-                .get<Array<PostType>>('posts?_limit=20', {})
+                .get<PostType[]>('posts?_limit=20', {})
         )
     },
     getUser(userId: number): Promise<AxiosResponse<UserType>> {
@@ -18,10 +18,10 @@ export const mitraSoftAPI = {
                 .get<UserType>(`users/${userId}`, {})
         )
     },
-    // getPost(postId: number): Promise<AxiosResponse<PostType>> {
-    //     return (
-    //         instance
-    //             .get<PostType>(`posts/${postId}`, {})
-    //     )
-    // }
+    getPostComments(postId: number): Promise<AxiosResponse<CommentType[]>> {
+        return (
+            instance
+                .get<CommentType[]>(`posts/${postId}/comments`, {})
+        )
+    }
 }

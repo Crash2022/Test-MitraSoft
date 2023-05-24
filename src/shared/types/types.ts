@@ -5,6 +5,14 @@ export type PostType = {
     body: string
 }
 
+export type CommentType = {
+    userId: number
+    id: number
+    name: string
+    email: string
+    body: string
+}
+
 export type UserType = {
     id: number
     name: string
