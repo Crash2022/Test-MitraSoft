@@ -5,6 +5,7 @@ export const selectAppStatus = (state: AppRootStateType) => state.app.status
 export const selectAppError = (state: AppRootStateType) => state.app.error
 
 export const selectPosts = (state: AppRootStateType) => state.posts
+export const selectUser = (state: AppRootStateType) => state.user
 
 // selector for saga
 // export function* appSelect<TSelected>(selector: (state: AppRootStateType) => TSelected, ): Generator<any, TSelected, TSelected> {

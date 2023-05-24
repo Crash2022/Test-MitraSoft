@@ -4,6 +4,7 @@ import {PostsActionTypes, postsReducer, postsWatcherSaga} from './posts-reducer'
 import {ApplicationActionTypes, appReducer} from './app-reducer';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
+import {UserActionTypes, userReducer, userWatcherSaga} from "./user-reducer";
 
 /*------------------------------------------------------------*/
 
@@ -23,35 +24,31 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     app: appReducer,
-    posts: postsReducer
+    posts: postsReducer,
+    user: userReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()
 
-// store
 // @ts-ignore // для Chrome Extension
-export const store = legacy_createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware, sagaMiddleware)));
+export const store = legacy_createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware, sagaMiddleware)))
 
-// типизация state
 export type AppRootStateType = ReturnType<typeof rootReducer>
-
-// типизация Dispatch
 export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, any>
-
-// типизация Thunk
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppRootStateType, unknown, AppActionType>
 
-// типизация всех экшенов для React-Redux
 export type AppActionType =
     ApplicationActionTypes |
-    PostsActionTypes
+    PostsActionTypes |
+    UserActionTypes
 
 // saga
 sagaMiddleware.run(rootWatcher)
 
 function* rootWatcher() {
     yield all([
-        postsWatcherSaga()
+        postsWatcherSaga(),
+        userWatcherSaga()
     ])
 }
 /*------------------------------------------------------------*/
