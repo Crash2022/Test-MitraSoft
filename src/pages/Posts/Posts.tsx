@@ -30,11 +30,11 @@ export const Posts = () => {
     return (
         <Container>
             {
-                posts.map((post: PostType) => {
+                posts && posts.map((post: PostType) => {
                     return (
-                        <div key={post.id}>
-                            <PostItem post={post}/>
-                        </div>
+                        // <div key={post.id}>
+                            <PostItem key={post.id} post={post}/>
+                        // </div>
                     )
                 })
             }

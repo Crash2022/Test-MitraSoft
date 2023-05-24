@@ -5,7 +5,6 @@ import {ContextAwareToggle} from './ContextAwareToggle';
 import {CommentType} from '../../shared/types/types';
 
 type CommentsAccordionBodyProps = {
-    // comments: CommentType[]
     comment: CommentType
 }
 

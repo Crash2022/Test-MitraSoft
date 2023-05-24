@@ -29,7 +29,7 @@ export const PostItem = ({post}: PostItemProps) => {
     )
 
     useEffect(() => {
-        dispatch(getPostCommentsTC(post.id));
+        dispatch(getPostCommentsTC(post.id))
     }, [])
 
     return (
