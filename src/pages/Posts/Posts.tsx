@@ -45,19 +45,16 @@ export const Posts = () => {
                                 >
                                     <Card.Img variant="top"
                                               src={Avatar}
+                                              style={{cursor: 'pointer'}}
                                               onClick={() => {
                                                   navigate(`/users/${post.userId}`)
                                               }}
-                                              style={{cursor: 'pointer'}}
                                     />
                                 </OverlayTrigger>
                             </Col>
-
                             <Col md={11}>
                                 <Card.Title>{post.title}</Card.Title>
-                                <Card.Text>
-                                    {post.body}
-                                </Card.Text>
+                                <Card.Text>{post.body}</Card.Text>
                             </Col>
                         </Row>
                     )
