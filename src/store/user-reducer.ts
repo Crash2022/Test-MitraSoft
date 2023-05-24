@@ -1,17 +1,26 @@
 import {appSetErrorAC, appSetStatusAC} from './app-reducer';
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {AxiosResponse} from 'axios';
-import {UserType} from '../shared/types/types';
+import {PostType, UserType} from '../shared/types/types';
 import {mitraSoftAPI} from '../shared/api/api';
 
 // reducer
-const initialState: UserType = {} as UserType
+export type UserInitialStateType = {
+    userProfile: UserType
+    userPosts: PostType[]
+}
 
-export const userReducer = (state: UserType = initialState,
-                                 action: UserActionTypes): UserType => {
+// const initialState: UserType = {} as UserType
+const initialState: UserInitialStateType = {
+    userProfile: {} as UserType,
+    userPosts: [] as PostType[]
+}
+
+export const userReducer = (state: UserInitialStateType = initialState,
+                                 action: UserActionTypes): UserInitialStateType => {
     switch (action.type) {
         case 'USER/SET_USER': {
-            return action.user
+            return {...state, userProfile: action.user}
         }
         default:
             return state
