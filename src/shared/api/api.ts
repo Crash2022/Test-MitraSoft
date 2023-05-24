@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from 'axios';
-import {PostType} from '../types/types';
+import {PostType, UserType} from '../types/types';
 
 const instance = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com/',
@@ -12,10 +12,16 @@ export const mitraSoftAPI = {
                 .get<Array<PostType>>('posts?_limit=20', {})
         )
     },
-    getPost(postId: number): Promise<AxiosResponse<PostType>> {
+    getUser(userId: number): Promise<AxiosResponse<UserType>> {
         return (
             instance
-                .get<PostType>(`posts/${postId}`, {})
+                .get<UserType>(`users/${userId}`, {})
         )
-    }
+    },
+    // getPost(postId: number): Promise<AxiosResponse<PostType>> {
+    //     return (
+    //         instance
+    //             .get<PostType>(`posts/${postId}`, {})
+    //     )
+    // }
 }
