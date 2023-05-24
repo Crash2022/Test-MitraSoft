@@ -10,7 +10,6 @@ export type UserInitialStateType = {
     userPosts: PostType[]
 }
 
-// const initialState: UserType = {} as UserType
 const initialState: UserInitialStateType = {
     userProfile: {} as UserType,
     userPosts: [] as PostType[]
