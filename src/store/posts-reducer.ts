@@ -9,16 +9,16 @@ export type InitialStateType = {
     allPosts: PostType[]
     userProfile: UserType
     userPosts: PostType[]
-    // postComments: CommentType[]
-    // [postId: number]: CommentType[]
+    // postComments: {
+    //     [postId: number]: CommentType[]
+    // }
 }
 
 const initialState: InitialStateType = {
     allPosts: [] as PostType[],
     userProfile: {} as UserType,
     userPosts: [] as PostType[],
-    // postComments: [] as CommentType[],
-    // [postId]: {}
+    // postComments: {}
 }
 
 export const postsReducer = (state: InitialStateType = initialState,

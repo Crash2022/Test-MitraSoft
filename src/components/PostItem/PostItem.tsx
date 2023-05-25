@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Col, Row} from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Card from 'react-bootstrap/Card';
-import {CommentsAccordionBody} from '../CommentsAccordion/CommentsAccordionBody';
+import {CommentsAccordion} from '../CommentsAccordion/CommentsAccordion';
 import Avatar from '../../shared/assets/avatar-04.svg';
 import {CommentType, PostType} from '../../shared/types/types';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -10,6 +10,8 @@ import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../store/store';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
+import {getPostCommentsTC} from "../../store/comments-reducer";
+import {CommentItem} from "../CommentItem/CommentItem";
 
 type PostItemProps = {
     post: PostType
@@ -55,12 +57,26 @@ export const PostItem = ({post}: PostItemProps) => {
                 <Col md={11}>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>{post.body}</Card.Text>
-                    {/*<CommentsAccordionBody/>*/}
-                    <CommentsAccordionBody postId={post.id}/>
+
+                    {/*<CommentsAccordionBody postId={post.id}/>*/}
 
                     {/*<button onClick={() => {navigate(`/posts/${post.id}/comments`)}}>*/}
                     {/*    Посмотреть комментарии*/}
                     {/*</button>*/}
+
+                    <button onClick={() => {dispatch(getPostCommentsTC(post.id))}}>
+                        Посмотреть комментарии
+                    </button>
+
+                    {
+                        commentsObj && commentsObj.map((com: CommentType) => {
+                            return (
+                                <CommentItem key={com.id}
+                                             comment={com}
+                                />
+                            )
+                        })
+                    }
                 </Col>
             </Row>
         </>
