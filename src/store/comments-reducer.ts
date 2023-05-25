@@ -1,4 +1,4 @@
-import {appSetErrorAC, appSetStatusAC} from './app-reducer';
+import {appSetErrorAC, appSetLocalStatusAC, appSetStatusAC} from './app-reducer';
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {AxiosResponse} from 'axios';
 import {CommentType} from '../shared/types/types';
@@ -44,16 +44,16 @@ export function* commentsWatcherSaga() {
 // thunks
 export const getPostCommentsTC = (postId: number) => ({type: 'COMMENTS/GET_POST_COMMENTS', postId} as const)
 export function* getPostCommentsTC_WorkerSaga(action: ReturnType<typeof getPostCommentsTC>): any {
-    yield put(appSetStatusAC('loading'))
+    yield put(appSetLocalStatusAC('loading'))
     const response: AxiosResponse<CommentType[]> = yield call(mitraSoftAPI.getPostComments, action.postId)
     try {
         yield put(setPostCommentsAC(action.postId, response.data))
-        yield put(appSetStatusAC('succeeded'))
+        yield put(appSetLocalStatusAC('succeeded'))
     } catch (error) {
         console.log(error)
         yield put(appSetErrorAC('Some error occurred'))
-        yield put(appSetStatusAC('failed'))
+        yield put(appSetLocalStatusAC('failed'))
     } finally {
-        yield put(appSetStatusAC('idle'))
+        yield put(appSetLocalStatusAC('idle'))
     }
 }

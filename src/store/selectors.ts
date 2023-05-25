@@ -2,6 +2,7 @@ import {AppRootStateType} from './store';
 import { select } from 'redux-saga/effects';
 
 export const selectAppStatus = (state: AppRootStateType) => state.app.status
+export const selectAppLocalStatus = (state: AppRootStateType) => state.app.localStatus
 export const selectAppError = (state: AppRootStateType) => state.app.error
 
 export const selectPosts = (state: AppRootStateType) => state.posts.allPosts

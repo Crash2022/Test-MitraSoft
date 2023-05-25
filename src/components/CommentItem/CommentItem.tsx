@@ -8,9 +8,9 @@ type CommentItemProps = {
 
 export const CommentItem = ({comment}: CommentItemProps) => {
     return (
-        <div>
+        <>
             <Card.Title>{comment.email}</Card.Title>
             <Card.Text>{comment.body}</Card.Text>
-        </div>
+        </>
     )
 }

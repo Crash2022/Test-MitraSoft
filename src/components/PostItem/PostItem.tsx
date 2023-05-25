@@ -13,7 +13,7 @@ import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {getPostCommentsTC} from "../../store/comments-reducer";
 import {CommentItem} from "../CommentItem/CommentItem";
 import {useAppSelector} from "../../shared/hooks/useAppSelector";
-import {selectAppStatus} from "../../store/selectors";
+import {selectAppLocalStatus, selectAppStatus} from "../../store/selectors";
 import Spinner from "react-bootstrap/Spinner";
 
 type PostItemProps = {
@@ -24,7 +24,7 @@ export const PostItem = ({post}: PostItemProps) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const status = useAppSelector(selectAppStatus)
+    const localStatus = useAppSelector(selectAppLocalStatus)
     const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
         (state => state.comments[post.id])
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
@@ -77,17 +77,21 @@ export const PostItem = ({post}: PostItemProps) => {
                     <button onClick={() => {collapseCommentsHandler(post.id)}}>
                         Посмотреть комментарии...
                     </button>
-                    {
-                        status === 'loading' ?
-                            <Spinner animation="border" variant="primary" style={{marginTop: '30px'}}/>
-                            : commentsObj && commentsObj.map((com: CommentType) => {
-                            return (
-                                <CommentItem key={com.id}
-                                             comment={com}
+                    <div>
+                        {
+                            localStatus === 'loading' ?
+                                <Spinner animation="border" variant="primary"
+                                         style={{margin: '20px auto', display: 'flex', justifyContent: 'center'}}
                                 />
-                            )
-                        })
-                    }
+                                : commentsObj && commentsObj.map((com: CommentType) => {
+                                    return (
+                                        <CommentItem key={com.id}
+                                                    comment={com}
+                                        />
+                                    )
+                                })
+                        }
+                    </div>
                 </Col>
             </Row>
         </>
