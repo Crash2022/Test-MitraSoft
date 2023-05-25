@@ -1,14 +1,21 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import {AccordionContext} from 'react-bootstrap';
+import {useAppDispatch} from "../../shared/hooks/useAppDispatch";
+import {getPostCommentsTC} from "../../store/comments-reducer";
 
 type ContextAwareToggleProps = {
     children: string
     eventKey: string
     callback?: (eventKey: string) => void
+    // isCurrentEventKey: boolean
+    postId: number
+    setIsFetch: (value: boolean) => void
 }
 
-export const ContextAwareToggle = ({ children, eventKey, callback }: ContextAwareToggleProps) => {
+export const ContextAwareToggle = ({ children, eventKey, callback, postId, setIsFetch }: ContextAwareToggleProps) => {
+
+    const dispatch = useAppDispatch()
     const { activeEventKey } = useContext(AccordionContext)
 
     const decoratedOnClick = useAccordionButton(
@@ -16,6 +23,14 @@ export const ContextAwareToggle = ({ children, eventKey, callback }: ContextAwar
     )
 
     const isCurrentEventKey = activeEventKey === eventKey
+
+    useEffect(() => {
+        if (isCurrentEventKey) {
+            setIsFetch(true)
+        }
+    }, [isCurrentEventKey])
+
+    console.log('postId', postId)
 
     return (
         <button

@@ -66,6 +66,10 @@ export const PostItem = ({post}: PostItemProps) => {
 
                     <CommentsAccordionBody postId={post.id}/>
 
+                    <button onClick={() => {navigate(`/posts/${post.id}/comments`)}}>
+                        Посмотреть комментарии
+                    </button>
+
                     {/*<CommentsAccordionBody comments={commentsObj}/>*/}
 
                     {/*{*/}
