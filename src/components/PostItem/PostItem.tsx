@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Row} from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Card from 'react-bootstrap/Card';
@@ -12,6 +12,9 @@ import {AppRootStateType} from '../../store/store';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {getPostCommentsTC} from "../../store/comments-reducer";
 import {CommentItem} from "../CommentItem/CommentItem";
+import {useAppSelector} from "../../shared/hooks/useAppSelector";
+import {selectAppStatus} from "../../store/selectors";
+import Spinner from "react-bootstrap/Spinner";
 
 type PostItemProps = {
     post: PostType
@@ -21,8 +24,10 @@ export const PostItem = ({post}: PostItemProps) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+    const status = useAppSelector(selectAppStatus)
     const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
         (state => state.comments[post.id])
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
 
     const renderTooltip = (props: any) => (
         <Tooltip id="user-image-tooltip" {...props}>
@@ -31,6 +36,7 @@ export const PostItem = ({post}: PostItemProps) => {
     )
 
     const collapseCommentsHandler = (postId: number) => {
+        // setIsCollapsed(!isCollapsed)
         dispatch(getPostCommentsTC(postId))
     }
 
@@ -72,7 +78,9 @@ export const PostItem = ({post}: PostItemProps) => {
                         Посмотреть комментарии...
                     </button>
                     {
-                        commentsObj && commentsObj.map((com: CommentType) => {
+                        status === 'loading' ?
+                            <Spinner animation="border" variant="primary" style={{marginTop: '30px'}}/>
+                            : commentsObj && commentsObj.map((com: CommentType) => {
                             return (
                                 <CommentItem key={com.id}
                                              comment={com}
