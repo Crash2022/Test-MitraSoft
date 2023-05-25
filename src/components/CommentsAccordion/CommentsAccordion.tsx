@@ -24,8 +24,6 @@ export const CommentsAccordion = React.memo(() => {
                 </Card.Header>
                 <Accordion.Collapse eventKey='0'>
                     <Card.Body>
-                        Комментарии
-
                         {/*{*/}
                         {/*    comments.map(com => {*/}
                         {/*        return (*/}

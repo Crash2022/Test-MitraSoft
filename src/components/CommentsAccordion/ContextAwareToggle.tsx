@@ -1,8 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import {AccordionContext} from 'react-bootstrap';
-import {useAppDispatch} from "../../shared/hooks/useAppDispatch";
-import {getPostCommentsTC} from "../../store/comments-reducer";
 
 type ContextAwareToggleProps = {
     children: string
@@ -12,7 +10,6 @@ type ContextAwareToggleProps = {
 
 export const ContextAwareToggle = ({ children, eventKey, callback }: ContextAwareToggleProps) => {
 
-    const dispatch = useAppDispatch()
     const { activeEventKey } = useContext(AccordionContext)
 
     const decoratedOnClick = useAccordionButton(
