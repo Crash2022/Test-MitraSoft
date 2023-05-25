@@ -30,6 +30,10 @@ export const PostItem = ({post}: PostItemProps) => {
         </Tooltip>
     )
 
+    const collapseCommentsHandler = (postId: number) => {
+        dispatch(getPostCommentsTC(postId))
+    }
+
     console.log('post', post)
 
     return (
@@ -58,16 +62,15 @@ export const PostItem = ({post}: PostItemProps) => {
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>{post.body}</Card.Text>
 
-                    {/*<CommentsAccordionBody postId={post.id}/>*/}
+                    {/*<CommentsAccordion postId={post.id}/>*/}
 
                     {/*<button onClick={() => {navigate(`/posts/${post.id}/comments`)}}>*/}
                     {/*    Посмотреть комментарии*/}
                     {/*</button>*/}
 
-                    <button onClick={() => {dispatch(getPostCommentsTC(post.id))}}>
-                        Посмотреть комментарии
+                    <button onClick={() => {collapseCommentsHandler(post.id)}}>
+                        Посмотреть комментарии...
                     </button>
-
                     {
                         commentsObj && commentsObj.map((com: CommentType) => {
                             return (
