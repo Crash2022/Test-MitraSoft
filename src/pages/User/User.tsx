@@ -31,7 +31,8 @@ export const User = () => {
         return () => clearTimeout(timer)
     }, [params.userId])
 
-    if (status === 'loading') return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
+    if (status === 'loading')
+        return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>

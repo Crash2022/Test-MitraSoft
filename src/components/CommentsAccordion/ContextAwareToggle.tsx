@@ -8,7 +8,6 @@ type ContextAwareToggleProps = {
     children: string
     eventKey: string
     callback?: (eventKey: string) => void
-    // isCurrentEventKey: boolean
     postId: number
     setIsFetch: (value: boolean) => void
 }

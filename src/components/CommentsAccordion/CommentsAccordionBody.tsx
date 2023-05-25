@@ -19,7 +19,8 @@ type CommentsAccordionBodyProps = {
 export const CommentsAccordionBody = ({postId}: CommentsAccordionBodyProps) => {
 
     const dispatch = useAppDispatch()
-    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>(state => state.comments[postId])
+    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
+        (state => state.comments[postId])
     const [isFetch, setIsFetch] = useState<boolean>(false)
 
     // const { activeEventKey } = useContext(AccordionContext)
@@ -28,7 +29,6 @@ export const CommentsAccordionBody = ({postId}: CommentsAccordionBodyProps) => {
 
     useEffect(() => {
         // dispatch(getPostCommentsTC(post.id))
-        // console.log('isCurrentEventKey', isCurrentEventKey)
     }, [])
 
     useEffect(() => {
@@ -37,9 +37,6 @@ export const CommentsAccordionBody = ({postId}: CommentsAccordionBodyProps) => {
             console.log('commentsObj', commentsObj)
         }
     }, [isFetch])
-
-    // console.log('commentsObj', commentsObj)
-    // console.log('isCurrentEventKey', isCurrentEventKey)
 
     return (
         <Accordion>
@@ -54,8 +51,6 @@ export const CommentsAccordionBody = ({postId}: CommentsAccordionBodyProps) => {
                 </Card.Header>
                 <Accordion.Collapse eventKey='0'>
                     <Card.Body>
-                        {/*Comments*/}
-
                         {
                             commentsObj && commentsObj.map((com: CommentType) => {
                                 return (
@@ -90,7 +85,6 @@ export const CommentsAccordionBody = ({postId}: CommentsAccordionBodyProps) => {
 
                         {/*<Card.Title>{comment.email}</Card.Title>*/}
                         {/*<Card.Text>{comment.body}</Card.Text>*/}
-
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>

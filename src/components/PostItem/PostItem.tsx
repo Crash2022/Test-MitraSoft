@@ -9,7 +9,6 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../store/store';
-import {getPostCommentsTC} from '../../store/comments-reducer';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 
 type PostItemProps = {
@@ -20,7 +19,8 @@ export const PostItem = ({post}: PostItemProps) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>(state => state.comments[post.id])
+    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
+        (state => state.comments[post.id])
 
     const renderTooltip = (props: any) => (
         <Tooltip id="user-image-tooltip" {...props}>
@@ -28,11 +28,6 @@ export const PostItem = ({post}: PostItemProps) => {
         </Tooltip>
     )
 
-    useEffect(() => {
-        // dispatch(getPostCommentsTC(post.id))
-    }, [])
-
-    // console.log('commentsObj', commentsObj)
     console.log('post', post)
 
     return (
@@ -61,24 +56,11 @@ export const PostItem = ({post}: PostItemProps) => {
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>{post.body}</Card.Text>
                     {/*<CommentsAccordionBody/>*/}
-
-                    {/*<CommentsAccordionBody comments={commentsObj}/>*/}
-
                     <CommentsAccordionBody postId={post.id}/>
 
-                    <button onClick={() => {navigate(`/posts/${post.id}/comments`)}}>
-                        Посмотреть комментарии
-                    </button>
-
-                    {/*<CommentsAccordionBody comments={commentsObj}/>*/}
-
-                    {/*{*/}
-                    {/*    commentsObj.map((comment ) => {*/}
-                    {/*        return (*/}
-                    {/*            <CommentsAccordionBody key={comment.id} comment={comment}/>*/}
-                    {/*        )*/}
-                    {/*    })*/}
-                    {/*}*/}
+                    {/*<button onClick={() => {navigate(`/posts/${post.id}/comments`)}}>*/}
+                    {/*    Посмотреть комментарии*/}
+                    {/*</button>*/}
                 </Col>
             </Row>
         </>

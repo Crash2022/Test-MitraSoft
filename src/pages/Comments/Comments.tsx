@@ -15,7 +15,8 @@ export const Comments = () => {
     const dispatch = useAppDispatch()
     const params = useParams<'postId'>()
     const status = useAppSelector(selectAppStatus)
-    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>(state => state.comments[Number(params.postId)])
+    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
+        (state => state.comments[Number(params.postId)])
 
     useEffect(() => {
         dispatch(appSetStatusAC('loading'))
@@ -27,7 +28,8 @@ export const Comments = () => {
         return () => clearTimeout(timer)
     }, [params.postId])
 
-    if (status === 'loading') return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
+    if (status === 'loading')
+        return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
 
     return (
         <div>
@@ -35,7 +37,10 @@ export const Comments = () => {
                 {
                     commentsObj && commentsObj.map(com => {
                         return (
-                            <li key={com.id}>{com.body}</li>
+                            <li key={com.id}>
+                                <div style={{textDecoration: 'underline'}}>{com.email}</div>
+                                <div>{com.body}</div>
+                            </li>
                         )
                     })
                 }

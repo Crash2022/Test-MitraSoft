@@ -27,7 +27,8 @@ export const Posts = () => {
 
     console.log('posts', posts)
 
-    if (status === 'loading') return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
+    if (status === 'loading')
+        return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
 
     return (
         <Container>
