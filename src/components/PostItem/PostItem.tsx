@@ -29,10 +29,11 @@ export const PostItem = ({post}: PostItemProps) => {
     )
 
     useEffect(() => {
-        dispatch(getPostCommentsTC(post.id))
+        // dispatch(getPostCommentsTC(post.id))
     }, [])
 
-    console.log('commentsObj', commentsObj)
+    // console.log('commentsObj', commentsObj)
+    console.log('post', post)
 
     return (
         <>
@@ -59,15 +60,21 @@ export const PostItem = ({post}: PostItemProps) => {
                 <Col md={11}>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>{post.body}</Card.Text>
+                    {/*<CommentsAccordionBody/>*/}
+
                     {/*<CommentsAccordionBody comments={commentsObj}/>*/}
 
-                    {
-                        commentsObj.map(comment => {
-                            return (
-                                <CommentsAccordionBody key={comment.id} comment={comment}/>
-                            )
-                        })
-                    }
+                    <CommentsAccordionBody postId={post.id}/>
+
+                    {/*<CommentsAccordionBody comments={commentsObj}/>*/}
+
+                    {/*{*/}
+                    {/*    commentsObj.map((comment ) => {*/}
+                    {/*        return (*/}
+                    {/*            <CommentsAccordionBody key={comment.id} comment={comment}/>*/}
+                    {/*        )*/}
+                    {/*    })*/}
+                    {/*}*/}
                 </Col>
             </Row>
         </>

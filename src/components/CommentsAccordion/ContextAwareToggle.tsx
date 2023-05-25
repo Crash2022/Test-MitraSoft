@@ -3,7 +3,7 @@ import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import {AccordionContext} from 'react-bootstrap';
 
 type ContextAwareToggleProps = {
-    children?: string
+    children: string
     eventKey: string
     callback?: (eventKey: string) => void
 }
@@ -12,9 +12,8 @@ export const ContextAwareToggle = ({ children, eventKey, callback }: ContextAwar
     const { activeEventKey } = useContext(AccordionContext)
 
     const decoratedOnClick = useAccordionButton(
-        eventKey,
-        () => callback && callback(eventKey),
-    );
+        eventKey, () => callback && callback(eventKey)
+    )
 
     const isCurrentEventKey = activeEventKey === eventKey
 

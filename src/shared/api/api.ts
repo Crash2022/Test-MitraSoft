@@ -9,7 +9,7 @@ export const mitraSoftAPI = {
     getPosts(): Promise<AxiosResponse<PostType[]>> {
         return (
             instance
-                .get<PostType[]>('posts?_limit=20', {})
+                .get<PostType[]>('posts?_limit=5', {})
         )
     },
     getUser(userId: number): Promise<AxiosResponse<UserType>> {
@@ -22,6 +22,12 @@ export const mitraSoftAPI = {
         return (
             instance
                 .get<CommentType[]>(`posts/${postId}/comments`, {})
+        )
+    },
+    getPostCommentsByParams(postId: number): Promise<AxiosResponse<CommentType[]>> {
+        return (
+            instance
+                .get<CommentType[]>(`comments?postId=${postId}`, {})
         )
     }
 }

@@ -60,7 +60,9 @@ export const User = () => {
                         </div>
                         <div>
                             <Card.Title>id={params.userId}, {user.name}</Card.Title>
-                            <Card.Text>{user.email}</Card.Text>
+                            <Card.Text>
+                                <span style={{textDecoration: 'underline'}}>e-mail:</span> {user.email}
+                            </Card.Text>
                         </div>
                     </div>
                 )

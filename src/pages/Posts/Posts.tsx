@@ -34,9 +34,7 @@ export const Posts = () => {
             {
                 posts && posts.map((post: PostType) => {
                     return (
-                        // <div key={post.id}>
-                            <PostItem key={post.id} post={post}/>
-                        // </div>
+                        <PostItem key={post.id} post={post}/>
                     )
                 })
             }
