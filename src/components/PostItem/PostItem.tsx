@@ -11,10 +11,10 @@ import {useSelector} from 'react-redux';
 import {AppRootStateType} from '../../store/store';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {getPostCommentsTC} from "../../store/comments-reducer";
-import {CommentItem} from "../CommentItem/CommentItem";
 import {useAppSelector} from "../../shared/hooks/useAppSelector";
 import {selectAppLocalStatus} from "../../store/selectors";
 import Spinner from "react-bootstrap/Spinner";
+import {CommentItem} from "../CommentItem/CommentItem";
 
 type PostItemProps = {
     post: PostType
@@ -26,11 +26,11 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
-    const localStatus = useAppSelector(selectAppLocalStatus)
-    const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
-        (state => state.comments[post.id])
+    // const localStatus = useAppSelector(selectAppLocalStatus)
+    // const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
+    //     (state => state.comments[post.id])
 
-    const [isCollapsed, setIsCollapsed] = useState<boolean>(true)
+    // const [isCollapsed, setIsCollapsed] = useState<boolean>(true)
 
     const renderTooltip = (props: any) => (
         <Tooltip id="user-image-tooltip" {...props}>
@@ -38,11 +38,11 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
         </Tooltip>
     )
 
-    useEffect(() => {
-        if (!isCollapsed) {
-            dispatch(getPostCommentsTC(post.id))
-        }
-    }, [isCollapsed])
+    // useEffect(() => {
+    //     if (!isCollapsed) {
+    //         dispatch(getPostCommentsTC(post.id))
+    //     }
+    // }, [isCollapsed])
 
     return (
         <>
@@ -78,6 +78,7 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
 
                     <CommentsAccordion postId={post.id}/>
 
+                    {/*самописный вариант*/}
                     {/*<button onClick={() => {setIsCollapsed(!isCollapsed)}}>*/}
                     {/*    Посмотреть комментарии...*/}
                     {/*</button>*/}

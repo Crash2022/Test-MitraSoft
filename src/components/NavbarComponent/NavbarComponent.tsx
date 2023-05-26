@@ -15,7 +15,9 @@ export const NavbarComponent = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{width: '100%'}}>
             <Container>
-                <Navbar.Brand onClick={() => {navigate(RoutePaths.HOME)}} style={{cursor: 'pointer'}}>МитраСОФТ</Navbar.Brand>
+                <Navbar.Brand onClick={() => {navigate(RoutePaths.HOME)}} style={{cursor: 'pointer'}}>
+                    МитраСОФТ
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
@@ -27,7 +29,10 @@ export const NavbarComponent = () => {
                                     display: 'flex', alignItems: 'center', gap: '10px'}}
                                 >
                                     <div>
-                                        <img src={MyAvatar} alt='my-avatar' width={70} height={70} style={{borderRadius: '50%'}}/>
+                                        <img src={MyAvatar} alt='my-avatar'
+                                             width={70} height={70}
+                                             style={{borderRadius: '50%'}}
+                                        />
                                     </div>
                                     <div>
                                         <Card.Title>Чашин Александр</Card.Title>
