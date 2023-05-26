@@ -78,7 +78,6 @@ export const User = () => {
                     {
                         userPosts && userPosts.map(up => {
                             return (
-                                // <li key={up.id}>{up.title}</li>
                                 <PostItem key={up.id} post={up} isTooltip={false}/>
                             )
                         })
