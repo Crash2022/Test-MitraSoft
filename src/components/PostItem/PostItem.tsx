@@ -62,16 +62,12 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
                             >
                                 <Card.Img src={Avatar}
                                           style={{cursor: 'pointer'}}
-                                          onClick={() => {
-                                              navigate(`/users/${post.userId}`)
-                                          }}
+                                          onClick={() => {navigate(`/users/${post.userId}`)}}
                                 />
                             </OverlayTrigger>
                             :
                             <Card.Img src={Avatar}
-                                      onClick={() => {
-                                          navigate(`/users/${post.userId}`)
-                                      }}
+                                      onClick={() => {navigate(`/users/${post.userId}`)}}
                             />
                     }
 
@@ -80,34 +76,30 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>{post.body}</Card.Text>
 
-                    {/*<CommentsAccordion postId={post.id}/>*/}
+                    <CommentsAccordion postId={post.id}/>
 
-                    {/*<button onClick={() => {navigate(`/posts/${post.id}/comments`)}}>*/}
-                    {/*    Посмотреть комментарии*/}
+                    {/*<button onClick={() => {setIsCollapsed(!isCollapsed)}}>*/}
+                    {/*    Посмотреть комментарии...*/}
                     {/*</button>*/}
-
-                    <button onClick={() => {setIsCollapsed(!isCollapsed)}}>
-                        Посмотреть комментарии...
-                    </button>
-                    {
-                        !isCollapsed ?
-                            <div>
-                                {
-                                    localStatus === 'loading' ?
-                                        <Spinner animation="border" variant="primary"
-                                                 style={{margin: '20px auto', display: 'flex', justifyContent: 'center'}}
-                                        />
-                                        : commentsObj && commentsObj.map((com: CommentType) => {
-                                        return (
-                                            <CommentItem key={com.id}
-                                                         comment={com}
-                                            />
-                                        )
-                                    })
-                                }
-                            </div>
-                            : ''
-                    }
+                    {/*{*/}
+                    {/*    !isCollapsed ?*/}
+                    {/*        <div>*/}
+                    {/*            {*/}
+                    {/*                localStatus === 'loading' ?*/}
+                    {/*                    <Spinner animation="border" variant="primary"*/}
+                    {/*                             style={{margin: '20px auto', display: 'flex', justifyContent: 'center'}}*/}
+                    {/*                    />*/}
+                    {/*                    : commentsObj && commentsObj.map((com: CommentType) => {*/}
+                    {/*                    return (*/}
+                    {/*                        <CommentItem key={com.id}*/}
+                    {/*                                     comment={com}*/}
+                    {/*                        />*/}
+                    {/*                    )*/}
+                    {/*                })*/}
+                    {/*            }*/}
+                    {/*        </div>*/}
+                    {/*        : ''*/}
+                    {/*}*/}
                 </Col>
             </Row>
         </>

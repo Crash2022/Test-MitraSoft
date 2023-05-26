@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import {ContextAwareToggle} from './ContextAwareToggle';
 import {useAppDispatch} from "../../shared/hooks/useAppDispatch";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
 import {CommentType} from "../../shared/types/types";
 import {getPostCommentsTC} from "../../store/comments-reducer";
 import {CommentItem} from "../CommentItem/CommentItem";
-import {appSetStatusAC} from "../../store/app-reducer";
-import {getPostsTC} from "../../store/posts-reducer";
+import {useAppSelector} from "../../shared/hooks/useAppSelector";
+import {selectAppLocalStatus} from "../../store/selectors";
+import Spinner from "react-bootstrap/Spinner";
+import {Card} from 'react-bootstrap';
+import {useAccordionButton} from "react-bootstrap/AccordionButton";
 
 type CommentsAccordionProps = {
     postId: number
@@ -18,66 +19,62 @@ type CommentsAccordionProps = {
 export const CommentsAccordion = ({postId}: CommentsAccordionProps) => {
 
     const dispatch = useAppDispatch()
+
+    const localStatus = useAppSelector(selectAppLocalStatus)
     const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
         (state => state.comments[postId])
 
-    // const [defaultActiveKey, setDefaultActiveKey] = useState<string>('')
+    const [eventKey, setEventKey] = useState<string>('1')
 
-    // useEffect(() => {
-    //     if (defaultActiveKey === "0") {
-    //         dispatch(getPostCommentsTC(postId))
-    //     }
-    // }, [defaultActiveKey])
+    const decoratedOnClick = useAccordionButton(eventKey, () =>
+        setEventKey(eventKey === '1' ? '0' : '1')
+    )
+
+    useEffect(() => {
+        if (eventKey === '0') {
+            dispatch(getPostCommentsTC(postId))
+        }
+    }, [eventKey])
 
     return (
-        <Accordion>
-            <Accordion.Item eventKey="0" onClick={() => {}}>
-                <Accordion.Header onClick={() => {}}>
-                    Показать комментарии...
-                </Accordion.Header>
-                <Accordion.Body>
-                    {
-                        commentsObj && commentsObj.map((com: CommentType) => {
-                            return (
-                                <CommentItem key={com.id}
-                                             comment={com}
-                                />
-                            )
-                        })
-                    }
-
-                    {/*Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do*/}
-                    {/*eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad*/}
-                    {/*minim veniam, quis nostrud exercitation ullamco laboris nisi ut*/}
-                    {/*aliquip ex ea commodo consequat. Duis aute irure dolor in*/}
-                    {/*reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla*/}
-                    {/*pariatur. Excepteur sint occaecat cupidatat non proident, sunt in*/}
-                    {/*culpa qui officia deserunt mollit anim id est laborum.*/}
-                </Accordion.Body>
-            </Accordion.Item>
+        <Accordion defaultActiveKey="0">
+            <Card>
+                <Card.Header>
+                    <button
+                        type='button'
+                        style={{ backgroundColor: eventKey === '0' ? 'pink' : 'lavender' }}
+                        onClick={decoratedOnClick}
+                    >
+                        {eventKey === '1' ? 'Показать комментарии...' : 'Скрыть комментарии...'}
+                    </button>
+                </Card.Header>
+                <Accordion.Collapse eventKey={eventKey!}>
+                    <Card.Body>
+                        {
+                            eventKey === '0' ?
+                            <div>
+                                {
+                                    localStatus === 'loading' ?
+                                        <Spinner animation="border" variant="primary"
+                                                 style={{
+                                                     margin: '20px auto',
+                                                     display: 'flex',
+                                                     justifyContent: 'center'
+                                                 }}
+                                        />
+                                        : commentsObj && commentsObj.map((com: CommentType) => {
+                                        return (
+                                            <CommentItem key={com.id}
+                                                         comment={com}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div> : ''
+                        }
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
         </Accordion>
-
-        // <Accordion>
-        //     <Card>
-        //         <Card.Header>
-        //             <ContextAwareToggle eventKey='0'>
-        //                 Комментарии...
-        //             </ContextAwareToggle>
-        //         </Card.Header>
-        //         <Accordion.Collapse eventKey='0'>
-        //             <Card.Body>
-        //                 {/*{*/}
-        //                 {/*    comments.map(com => {*/}
-        //                 {/*        return (*/}
-        //                 {/*            <CommentItem key={com.id}*/}
-        //                 {/*                         comment={com}*/}
-        //                 {/*            />*/}
-        //                 {/*        )*/}
-        //                 {/*    })*/}
-        //                 {/*}*/}
-        //             </Card.Body>
-        //         </Accordion.Collapse>
-        //     </Card>
-        // </Accordion>
     )
 }

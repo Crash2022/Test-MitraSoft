@@ -6,17 +6,18 @@ type ContextAwareToggleProps = {
     children: string
     eventKey: string
     callback?: (eventKey: string) => void
+    isCurrentEventKey: any
 }
 
-export const ContextAwareToggle = ({ children, eventKey, callback }: ContextAwareToggleProps) => {
+export const ContextAwareToggle = ({ children, eventKey, callback, isCurrentEventKey }: ContextAwareToggleProps) => {
 
-    const { activeEventKey } = useContext(AccordionContext)
+    // const { activeEventKey } = useContext(AccordionContext)
 
     const decoratedOnClick = useAccordionButton(
         eventKey, () => callback && callback(eventKey)
     )
 
-    const isCurrentEventKey = activeEventKey === eventKey
+    // const isCurrentEventKey = activeEventKey === eventKey
 
     useEffect(() => {
 
