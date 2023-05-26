@@ -1,4 +1,4 @@
-import {appSetErrorAC, appSetLocalStatusAC, appSetStatusAC} from './app-reducer';
+import {appSetErrorAC, appSetLocalStatusAC} from './app-reducer';
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {AxiosResponse} from 'axios';
 import {CommentType} from '../shared/types/types';

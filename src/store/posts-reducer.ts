@@ -1,7 +1,7 @@
 import {appSetErrorAC, appSetStatusAC} from './app-reducer';
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {AxiosResponse} from 'axios';
-import {CommentType, PostType, UserType} from '../shared/types/types';
+import {PostType, UserType} from '../shared/types/types';
 import {mitraSoftAPI} from '../shared/api/api';
 
 // reducer
@@ -9,16 +9,12 @@ export type InitialStateType = {
     allPosts: PostType[]
     userProfile: UserType
     userPosts: PostType[]
-    // postComments: {
-    //     [postId: number]: CommentType[]
-    // }
 }
 
 const initialState: InitialStateType = {
     allPosts: [] as PostType[],
     userProfile: {} as UserType,
     userPosts: [] as PostType[],
-    // postComments: {}
 }
 
 export const postsReducer = (state: InitialStateType = initialState,
@@ -33,9 +29,6 @@ export const postsReducer = (state: InitialStateType = initialState,
         case 'POSTS/SET_USER_POSTS': {
             return {...state, userPosts: state.allPosts.filter(p => p.userId === action.userId)}
         }
-        // case 'POSTS/SET_POST_COMMENTS': {
-        //     return {...state, postComments: action.comments}
-        // }
         default:
             return state
     }
@@ -62,18 +55,12 @@ export const setUserPostsAC = (userId: number) => ({
     type: 'POSTS/SET_USER_POSTS', userId
 } as const)
 
-// export type SetPostCommentsACType = ReturnType<typeof setPostCommentsAC>
-// export const setPostCommentsAC = (comments: CommentType[]) => ({
-//     type: 'POSTS/SET_POST_COMMENTS', comments
-// } as const)
-
 /*-----------------------------------------------------------------------------------*/
 
 // react-redux-saga
 export function* postsWatcherSaga() {
     yield takeEvery('POSTS/GET_POSTS', getPostsTC_WorkerSaga)
     yield takeEvery('POSTS/GET_USER', getUserTC_WorkerSaga)
-    // yield takeEvery('POSTS/GET_POST_COMMENTS', getPostCommentsTC_WorkerSaga)
 }
 
 // thunks
@@ -108,19 +95,3 @@ export function* getUserTC_WorkerSaga(action: ReturnType<typeof getUserTC>): any
         yield put(appSetStatusAC('idle'))
     }
 }
-
-// export const getPostCommentsTC = (postId: number) => ({type: 'POSTS/GET_POST_COMMENTS', postId} as const)
-// export function* getPostCommentsTC_WorkerSaga(action: ReturnType<typeof getPostCommentsTC>): any {
-//     yield put(appSetStatusAC('loading'))
-//     const response: AxiosResponse<CommentType[]> = yield call(mitraSoftAPI.getPostComments, action.postId)
-//     try {
-//         yield put(setPostCommentsAC(response.data))
-//         yield put(appSetStatusAC('succeeded'))
-//     } catch (error) {
-//         console.log(error)
-//         yield put(appSetErrorAC('Some error occurred'))
-//         yield put(appSetStatusAC('failed'))
-//     } finally {
-//         yield put(appSetStatusAC('idle'))
-//     }
-// }
