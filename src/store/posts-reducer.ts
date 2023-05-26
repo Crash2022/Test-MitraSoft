@@ -5,20 +5,20 @@ import {PostType, UserType} from '../shared/types/types';
 import {mitraSoftAPI} from '../shared/api/api';
 
 // reducer
-export type InitialStateType = {
+export type PostsInitialStateType = {
     allPosts: PostType[]
     userProfile: UserType
     userPosts: PostType[]
 }
 
-const initialState: InitialStateType = {
+const initialState: PostsInitialStateType = {
     allPosts: [] as PostType[],
     userProfile: {} as UserType,
     userPosts: [] as PostType[],
 }
 
-export const postsReducer = (state: InitialStateType = initialState,
-                                 action: PostsActionTypes): InitialStateType => {
+export const postsReducer = (state: PostsInitialStateType = initialState,
+                                 action: PostsActionTypes): PostsInitialStateType => {
     switch (action.type) {
         case 'POSTS/SET_POSTS': {
             return {...state, allPosts: action.posts}
@@ -38,7 +38,7 @@ export const postsReducer = (state: InitialStateType = initialState,
 
 // actions
 export type PostsActionTypes =
-    SetPostsACType | SetUserACType | SetUserPostsACType //| SetPostCommentsACType
+    SetPostsACType | SetUserACType | SetUserPostsACType
 
 export type SetPostsACType = ReturnType<typeof setPostsAC>
 export const setPostsAC = (posts: Array<PostType>) => ({
@@ -88,7 +88,6 @@ export function* getUserTC_WorkerSaga(action: ReturnType<typeof getUserTC>): any
         yield put(setUserAC(response.data))
         yield put(appSetStatusAC('succeeded'))
     } catch (error) {
-        console.log(error)
         yield put(appSetErrorAC('Some error occurred'))
         yield put(appSetStatusAC('failed'))
     } finally {

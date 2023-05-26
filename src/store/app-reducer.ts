@@ -10,7 +10,6 @@ const initialState: AppInitialStateType = {
     status: 'idle',
     localStatus: 'idle',
     error: null
-
 }
 
 export const appReducer = (state: AppInitialStateType = initialState,
