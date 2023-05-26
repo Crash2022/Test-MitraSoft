@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {PostType} from '../../shared/types/types';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {useAppSelector} from '../../shared/hooks/useAppSelector';

@@ -15,13 +15,13 @@ export const appReducer = (state: AppInitialStateType = initialState,
                            action: ApplicationActionTypes): AppInitialStateType => {
     switch (action.type) {
         case 'APP/SET_STATUS': {
-            return {...state, status: action.status};
+            return {...state, status: action.status}
         }
         case 'APP/SET_LOCAL_STATUS': {
-            return {...state, localStatus: action.status};
+            return {...state, localStatus: action.status}
         }
         default:
-            return {...state};
+            return {...state}
     }
 }
 
