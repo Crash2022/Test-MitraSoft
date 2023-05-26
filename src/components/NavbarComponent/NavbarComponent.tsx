@@ -21,12 +21,14 @@ export const NavbarComponent = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <NavDropdown title="Меню" id="collasible-nav-dropdown" style={{width: '350px'}}>
+                        <NavDropdown title="Меню" id="collasible-nav-dropdown"
+                                     style={{width: '350px'}}
+                        >
                             <NavDropdown.Item href={RoutePaths.HOME}>Список постов</NavDropdown.Item>
-                            {/*<NavDropdown.Item href={RoutePaths.ABOUT}>Обо мне</NavDropdown.Item>*/}
-                            <NavDropdown.Item href={RoutePaths.ABOUT}>
+                            <NavDropdown.Item href={RoutePaths.ABOUT}>Обо мне</NavDropdown.Item>
+                            <div>
                                 <div style={{border: '1px solid gray', padding: '5px', borderRadius: '5px',
-                                    display: 'flex', alignItems: 'center', gap: '10px'}}
+                                    display: 'flex', alignItems: 'center', gap: '10px', margin: '5px 10px'}}
                                 >
                                     <div>
                                         <img src={MyAvatar} alt='my-avatar'
@@ -39,7 +41,7 @@ export const NavbarComponent = () => {
                                         <Card.Text>ManForCoding@gmail.com</Card.Text>
                                     </div>
                                 </div>
-                            </NavDropdown.Item>
+                            </div>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
