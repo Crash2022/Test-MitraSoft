@@ -25,10 +25,12 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
+
     const localStatus = useAppSelector(selectAppLocalStatus)
     const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
         (state => state.comments[post.id])
-    // const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
+
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(true)
 
     const renderTooltip = (props: any) => (
         <Tooltip id="user-image-tooltip" {...props}>
@@ -36,9 +38,11 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
         </Tooltip>
     )
 
-    const collapseCommentsHandler = (postId: number) => {
-        dispatch(getPostCommentsTC(postId))
-    }
+    useEffect(() => {
+        if (!isCollapsed) {
+            dispatch(getPostCommentsTC(post.id))
+        }
+    }, [isCollapsed])
 
     return (
         <>
@@ -82,28 +86,30 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
                     {/*    Посмотреть комментарии*/}
                     {/*</button>*/}
 
-                    <button onClick={() => {collapseCommentsHandler(post.id)}}>
+                    <button onClick={() => {setIsCollapsed(!isCollapsed)}}>
                         Посмотреть комментарии...
                     </button>
-                    <div>
-                        {
-                            localStatus === 'loading' ?
-                                <Spinner animation="border" variant="primary"
-                                         style={{margin: '20px auto', display: 'flex', justifyContent: 'center'}}
-                                />
-                                : commentsObj && commentsObj.map((com: CommentType) => {
-                                    return (
-                                        <CommentItem key={com.id}
-                                                    comment={com}
+                    {
+                        !isCollapsed ?
+                            <div>
+                                {
+                                    localStatus === 'loading' ?
+                                        <Spinner animation="border" variant="primary"
+                                                 style={{margin: '20px auto', display: 'flex', justifyContent: 'center'}}
                                         />
-                                    )
-                                })
-                        }
-                    </div>
+                                        : commentsObj && commentsObj.map((com: CommentType) => {
+                                        return (
+                                            <CommentItem key={com.id}
+                                                         comment={com}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                            : ''
+                    }
                 </Col>
             </Row>
         </>
     )
 }
-
-// export default {}
