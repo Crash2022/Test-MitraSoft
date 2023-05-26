@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {getUserTC, setUserPostsAC} from '../../store/posts-reducer';
@@ -9,8 +9,8 @@ import {Container, Button} from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import Card from 'react-bootstrap/Card';
 import Avatar from '../../shared/assets/avatar-04.svg';
-import {appSetStatusAC} from '../../store/app-reducer';
 import {PostItem} from "../../components/PostItem/PostItem";
+import {useFetchData} from "../../shared/hooks/useFetchData";
 
 export const User = () => {
 
@@ -21,16 +21,8 @@ export const User = () => {
     const user = useAppSelector(selectUser)
     const userPosts = useAppSelector(selectUserPosts)
 
-    useEffect(() => {
-        dispatch(appSetStatusAC('loading'))
-
-        const timer = setTimeout(() => {
-            dispatch(getUserTC(Number(params.userId)))
-            dispatch(setUserPostsAC(Number(params.userId)))
-        }, 1000)
-
-        return () => clearTimeout(timer)
-    }, [params.userId])
+    useFetchData(() => {dispatch(getUserTC(Number(params.userId)))},
+        () => {dispatch(setUserPostsAC(Number(params.userId)))}, params.userId)
 
     if (status === 'loading')
         return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>

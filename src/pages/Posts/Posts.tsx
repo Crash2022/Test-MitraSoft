@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {PostType} from '../../shared/types/types';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {useAppSelector} from '../../shared/hooks/useAppSelector';
@@ -6,8 +6,8 @@ import {selectAppStatus, selectPosts} from '../../store/selectors';
 import {getPostsTC} from '../../store/posts-reducer';
 import Spinner from 'react-bootstrap/Spinner';
 import {Container} from 'react-bootstrap';
-import {appSetStatusAC} from '../../store/app-reducer';
 import {PostItem} from '../../components/PostItem/PostItem';
+import {useFetchData} from "../../shared/hooks/useFetchData";
 
 export const Posts = () => {
 
@@ -15,15 +15,7 @@ export const Posts = () => {
     const status = useAppSelector(selectAppStatus)
     const posts = useAppSelector(selectPosts)
 
-    useEffect(() => {
-        dispatch(appSetStatusAC('loading'))
-
-        const timer = setTimeout(() => {
-            dispatch(getPostsTC())
-        }, 1000)
-
-        return () => clearTimeout(timer)
-    }, [])
+    useFetchData(() => {dispatch(getPostsTC())})
 
     console.log('posts', posts)
 
