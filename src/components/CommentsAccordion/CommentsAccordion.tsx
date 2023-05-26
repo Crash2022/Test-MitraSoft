@@ -11,6 +11,7 @@ import {selectAppLocalStatus} from "../../store/selectors";
 import Spinner from "react-bootstrap/Spinner";
 import {Card} from 'react-bootstrap';
 import {useAccordionButton} from "react-bootstrap/AccordionButton";
+import Button from 'react-bootstrap/Button';
 
 type CommentsAccordionProps = {
     postId: number
@@ -40,13 +41,13 @@ export const CommentsAccordion = ({postId}: CommentsAccordionProps) => {
         <Accordion defaultActiveKey="0">
             <Card>
                 <Card.Header>
-                    <button
+                    <Button
                         type='button'
-                        style={{ backgroundColor: eventKey === '0' ? 'pink' : 'lavender' }}
+                        style={{ backgroundColor: eventKey === '0' ? '#6c757d' : '#0d6efd' }}
                         onClick={decoratedOnClick}
                     >
                         {eventKey === '1' ? 'Показать комментарии...' : 'Скрыть комментарии...'}
-                    </button>
+                    </Button>
                 </Card.Header>
                 <Accordion.Collapse eventKey={eventKey!}>
                     <Card.Body>

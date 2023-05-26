@@ -1,10 +1,10 @@
 import React from 'react';
+import MyAvatar from "../../shared/assets/my-avatar100.jpg";
+import {RoutePaths} from "../../shared/api/paths";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import {RoutePaths} from "../../shared/api/paths";
-import MyAvatar from "../../shared/assets/my-avatar100.jpg";
 import Card from "react-bootstrap/Card";
 
 export const NavbarOffcanvas = () => {
@@ -16,7 +16,7 @@ export const NavbarOffcanvas = () => {
                     // @ts-ignore
                     <Navbar key={expand} bg="light" expand={expand} className="mb-3" style={{width: '100%'}}>
                         <Container fluid>
-                            <Navbar.Brand href="#">МитраСофт</Navbar.Brand>
+                            <Navbar.Brand href={RoutePaths.HOME}>МитраСофт</Navbar.Brand>
                             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
                             <Navbar.Offcanvas
                                 id={`offcanvasNavbar-expand-${expand}`}
