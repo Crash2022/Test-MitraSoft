@@ -35,7 +35,7 @@ export const Posts = () => {
             {
                 posts && posts.map((post: PostType) => {
                     return (
-                        <PostItem key={post.id} post={post}/>
+                        <PostItem key={post.id} post={post} isTooltip={true}/>
                     )
                 })
             }

@@ -13,21 +13,22 @@ import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {getPostCommentsTC} from "../../store/comments-reducer";
 import {CommentItem} from "../CommentItem/CommentItem";
 import {useAppSelector} from "../../shared/hooks/useAppSelector";
-import {selectAppLocalStatus, selectAppStatus} from "../../store/selectors";
+import {selectAppLocalStatus} from "../../store/selectors";
 import Spinner from "react-bootstrap/Spinner";
 
 type PostItemProps = {
     post: PostType
+    isTooltip: boolean
 }
 
-export const PostItem = ({post}: PostItemProps) => {
+export const PostItem = ({post, isTooltip}: PostItemProps) => {
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const localStatus = useAppSelector(selectAppLocalStatus)
     const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
         (state => state.comments[post.id])
-    const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
+    // const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
 
     const renderTooltip = (props: any) => (
         <Tooltip id="user-image-tooltip" {...props}>
@@ -36,7 +37,6 @@ export const PostItem = ({post}: PostItemProps) => {
     )
 
     const collapseCommentsHandler = (postId: number) => {
-        // setIsCollapsed(!isCollapsed)
         dispatch(getPostCommentsTC(postId))
     }
 
@@ -51,18 +51,28 @@ export const PostItem = ({post}: PostItemProps) => {
                  }}
             >
                 <Col md={1}>
-                    <OverlayTrigger
-                        placement="right"
-                        delay={{show: 150, hide: 200}}
-                        overlay={renderTooltip}
-                    >
-                        <Card.Img src={Avatar}
-                                  style={{cursor: 'pointer'}}
-                                  onClick={() => {
-                                      navigate(`/users/${post.userId}`)
-                                  }}
-                        />
-                    </OverlayTrigger>
+                    {
+                        isTooltip ?
+                            <OverlayTrigger
+                                placement="right"
+                                delay={{show: 150, hide: 200}}
+                                overlay={renderTooltip}
+                            >
+                                <Card.Img src={Avatar}
+                                          style={{cursor: 'pointer'}}
+                                          onClick={() => {
+                                              navigate(`/users/${post.userId}`)
+                                          }}
+                                />
+                            </OverlayTrigger>
+                            :
+                            <Card.Img src={Avatar}
+                                      onClick={() => {
+                                          navigate(`/users/${post.userId}`)
+                                      }}
+                            />
+                    }
+
                 </Col>
                 <Col md={11}>
                     <Card.Title>{post.title}</Card.Title>

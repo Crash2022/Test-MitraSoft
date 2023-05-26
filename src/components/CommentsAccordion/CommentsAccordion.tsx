@@ -21,18 +21,17 @@ export const CommentsAccordion = ({postId}: CommentsAccordionProps) => {
     const commentsObj = useSelector<AppRootStateType, Array<CommentType>>
         (state => state.comments[postId])
 
-    const [defaultActiveKey, setDefaultActiveKey] = useState<string>('')
-    // defaultActiveKey="0"
+    // const [defaultActiveKey, setDefaultActiveKey] = useState<string>('')
 
-    useEffect(() => {
-        if (defaultActiveKey === "0") {
-            dispatch(getPostCommentsTC(postId))
-        }
-    }, [defaultActiveKey])
+    // useEffect(() => {
+    //     if (defaultActiveKey === "0") {
+    //         dispatch(getPostCommentsTC(postId))
+    //     }
+    // }, [defaultActiveKey])
 
     return (
-        <Accordion defaultActiveKey={defaultActiveKey}>
-            <Accordion.Item eventKey="0" onClick={() => {setDefaultActiveKey('0')}}>
+        <Accordion>
+            <Accordion.Item eventKey="0" onClick={() => {}}>
                 <Accordion.Header onClick={() => {}}>
                     Показать комментарии...
                 </Accordion.Header>

@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Card from 'react-bootstrap/Card';
-import MyAvatar from '../../shared/assets/my-avatar300.jpg'
+import MyAvatar from '../../shared/assets/my-avatar100.jpg'
 
 export const NavbarComponent = () => {
     return (
