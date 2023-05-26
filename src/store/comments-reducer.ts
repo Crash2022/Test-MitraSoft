@@ -1,4 +1,4 @@
-import {appSetErrorAC, appSetLocalStatusAC} from './app-reducer';
+import {appSetLocalStatusAC} from './app-reducer';
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {AxiosResponse} from 'axios';
 import {CommentType} from '../shared/types/types';
@@ -50,8 +50,6 @@ export function* getPostCommentsTC_WorkerSaga(action: ReturnType<typeof getPostC
         yield put(setPostCommentsAC(action.postId, response.data))
         yield put(appSetLocalStatusAC('succeeded'))
     } catch (error) {
-        console.log(error)
-        yield put(appSetErrorAC('Some error occurred'))
         yield put(appSetLocalStatusAC('failed'))
     } finally {
         yield put(appSetLocalStatusAC('idle'))

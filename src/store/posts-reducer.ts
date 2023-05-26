@@ -1,4 +1,4 @@
-import {appSetErrorAC, appSetStatusAC} from './app-reducer';
+import {appSetStatusAC} from './app-reducer';
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {AxiosResponse} from 'axios';
 import {PostType, UserType} from '../shared/types/types';
@@ -72,8 +72,6 @@ export function* getPostsTC_WorkerSaga(action: ReturnType<typeof getPostsTC>): a
         yield put(setPostsAC(response.data))
         yield put(appSetStatusAC('succeeded'))
     } catch (error) {
-        console.log(error)
-        yield put(appSetErrorAC('Some error occurred'))
         yield put(appSetStatusAC('failed'))
     } finally {
         yield put(appSetStatusAC('idle'))
@@ -88,7 +86,6 @@ export function* getUserTC_WorkerSaga(action: ReturnType<typeof getUserTC>): any
         yield put(setUserAC(response.data))
         yield put(appSetStatusAC('succeeded'))
     } catch (error) {
-        yield put(appSetErrorAC('Some error occurred'))
         yield put(appSetStatusAC('failed'))
     } finally {
         yield put(appSetStatusAC('idle'))
