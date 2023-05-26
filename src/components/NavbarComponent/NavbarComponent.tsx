@@ -6,12 +6,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Card from 'react-bootstrap/Card';
 import MyAvatar from '../../shared/assets/my-avatar100.jpg'
+import {useNavigate} from "react-router-dom";
 
 export const NavbarComponent = () => {
+
+    const navigate = useNavigate()
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{width: '100%'}}>
             <Container>
-                <Navbar.Brand>МитраСОФТ</Navbar.Brand>
+                <Navbar.Brand onClick={() => {navigate(RoutePaths.HOME)}} style={{cursor: 'pointer'}}>МитраСОФТ</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">

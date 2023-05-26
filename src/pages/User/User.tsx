@@ -71,9 +71,9 @@ export const User = () => {
                         </div>
                     )
                 }
-                <div style={{textDecoration: 'underline'}}>
-                    Список постов пользователя:
-                </div>
+                {/*<div style={{textDecoration: 'underline'}}>*/}
+                {/*    Список постов пользователя:*/}
+                {/*</div>*/}
                 <ul>
                     {
                         userPosts && userPosts.map(up => {
