@@ -5,6 +5,7 @@ import {Posts} from '../../pages/Posts/Posts'
 import {User} from "../../pages/User/User";
 import {About} from "../../pages/About/About";
 import {Comments} from "../../pages/Comments/Comments";
+import {Error404} from "../error404/Error404";
 
 export const routes = createBrowserRouter([
     {
@@ -30,5 +31,9 @@ export const routes = createBrowserRouter([
         element: <NavbarWrapperProvider>
             <Comments/>
         </NavbarWrapperProvider>
+    },
+    {
+        path: '*',
+        element: <Error404/>
     }
 ])

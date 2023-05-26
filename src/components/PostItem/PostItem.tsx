@@ -40,8 +40,6 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
         dispatch(getPostCommentsTC(postId))
     }
 
-    console.log('post', post)
-
     return (
         <>
             <Row key={post.id}

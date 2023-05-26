@@ -17,8 +17,6 @@ export const Posts = () => {
 
     useFetchData(() => {dispatch(getPostsTC())})
 
-    console.log('posts', posts)
-
     if (status === 'loading')
         return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
 

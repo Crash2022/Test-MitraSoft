@@ -11,7 +11,7 @@ export const Error404 = () => {
                 Error 404
             </div>
             <div>
-                <NavLink to={RoutePaths.HOME}>Go to HomePage</NavLink>
+                <NavLink to={RoutePaths.HOME}>Вернуться на главную страницу</NavLink>
             </div>
         </div>
     )
