@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../shared/hooks/useAppDispatch';
 import {getUserTC, setUserPostsAC} from '../../store/posts-reducer';
@@ -11,6 +11,7 @@ import Card from 'react-bootstrap/Card';
 import Avatar from '../../shared/assets/avatar-04.svg';
 import {PostItem} from "../../components/PostItem/PostItem";
 import {useFetchData} from "../../shared/hooks/useFetchData";
+import {PostType} from "../../shared/types/types";
 
 export const User = () => {
 
@@ -21,8 +22,14 @@ export const User = () => {
     const user = useAppSelector(selectUser)
     const userPosts = useAppSelector(selectUserPosts)
 
+    const userPostsLS = window.localStorage.getItem('userPosts')
+
     useFetchData(() => {dispatch(getUserTC(Number(params.userId)))},
         () => {dispatch(setUserPostsAC(Number(params.userId)))}, params.userId)
+
+    useEffect(() => {
+        if (userPosts.length > 0) window.localStorage.setItem('userPosts', JSON.stringify(userPosts))
+    }, [userPosts])
 
     if (status === 'loading')
         return <Spinner animation="border" variant="primary" style={{marginTop: '300px'}}/>
@@ -68,11 +75,17 @@ export const User = () => {
                 {/*</div>*/}
                 <ul>
                     {
-                        userPosts && userPosts.map(up => {
-                            return (
-                                <PostItem key={up.id} post={up} isTooltip={false}/>
-                            )
+                        userPosts.length > 0 ?
+                            userPosts.map(up => {
+                                return (
+                                    <PostItem key={up.id} post={up} isTooltip={false}/>
+                                )
                         })
+                            : userPostsLS && JSON.parse(userPostsLS!).map((up: PostType) => {
+                                return (
+                                    <PostItem key={up.id} post={up} isTooltip={false}/>
+                                )
+                            })
                     }
                 </ul>
             </div>

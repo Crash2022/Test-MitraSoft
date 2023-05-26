@@ -32,7 +32,7 @@ export const PostItem = ({post, isTooltip}: PostItemProps) => {
 
     const renderTooltip = (props: any) => (
         <Tooltip id="user-image-tooltip" {...props}>
-            Посмотреть профиль пользователя
+            Посмотреть профиль пользователя с id={post.userId}
         </Tooltip>
     )
 
