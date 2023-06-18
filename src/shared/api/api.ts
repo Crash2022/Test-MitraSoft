@@ -9,7 +9,7 @@ export const mitraSoftAPI = {
     getPosts(): Promise<AxiosResponse<PostType[]>> {
         return (
             instance
-                .get<PostType[]>('posts?_limit=15', {})
+                .get<PostType[]>('posts', {})
         )
     },
     getUser(userId: number): Promise<AxiosResponse<UserType>> {

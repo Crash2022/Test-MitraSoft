@@ -10,51 +10,46 @@ import Card from "react-bootstrap/Card";
 export const NavbarOffcanvas = () => {
 
     return (
-        <>
-            {
-                [false].map((expand) => (
-                    // @ts-ignore
-                    <Navbar key={expand} bg="light" expand={expand} className="mb-3" style={{width: '100%'}}>
-                        <Container fluid>
-                            <Navbar.Brand href={RoutePaths.HOME}>МитраСофт</Navbar.Brand>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
-                            <Navbar.Offcanvas
-                                id={`offcanvasNavbar-expand-${expand}`}
-                                aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                                placement="start"
+        <Navbar key={'0'} bg="light" expand={'0'} className="mb-3" style={{width: '100%'}}>
+            <Container fluid>
+                <Navbar.Brand href={RoutePaths.HOME}>МитраСофт</Navbar.Brand>
+                <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${'0'}`}/>
+                <Navbar.Offcanvas
+                    id={`offcanvasNavbar-expand-${'1'}`}
+                    aria-labelledby={`offcanvasNavbarLabel-expand-${'0'}`}
+                    placement="start"
+                >
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${'0'}`}>
+                            МитраСофт
+                        </Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        <Nav className="justify-content-end flex-grow-1 pe-3">
+                            <Nav.Link href={RoutePaths.HOME}>Список постов</Nav.Link>
+                            <Nav.Link href={RoutePaths.ABOUT}>Обо мне</Nav.Link>
+                        </Nav>
+                        <div>
+                            <div style={{
+                                border: '1px solid gray', padding: '5px', borderRadius: '5px',
+                                display: 'flex', alignItems: 'center', gap: '10px'
+                            }}
                             >
-                                <Offcanvas.Header closeButton>
-                                    <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                        МитраСофт
-                                    </Offcanvas.Title>
-                                </Offcanvas.Header>
-                                <Offcanvas.Body>
-                                    <Nav className="justify-content-end flex-grow-1 pe-3">
-                                        <Nav.Link href={RoutePaths.HOME}>Список постов</Nav.Link>
-                                        <Nav.Link href={RoutePaths.ABOUT}>Обо мне</Nav.Link>
-                                    </Nav>
-                                    <div>
-                                        <div style={{border: '1px solid gray', padding: '5px', borderRadius: '5px',
-                                            display: 'flex', alignItems: 'center', gap: '10px'}}
-                                        >
-                                            <div>
-                                                <img src={MyAvatar} alt='my-avatar'
-                                                     width={70} height={70}
-                                                     style={{borderRadius: '50%'}}
-                                                />
-                                            </div>
-                                            <div>
-                                                <Card.Title>Чашин Александр</Card.Title>
-                                                <Card.Text>ManForCoding@gmail.com</Card.Text>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Offcanvas.Body>
-                            </Navbar.Offcanvas>
-                        </Container>
-                    </Navbar>
-                ))
-            }
-        </>
+                                <div>
+                                    <img src={MyAvatar} alt='my-avatar'
+                                         width={70} height={70}
+                                         style={{borderRadius: '50%'}}
+                                    />
+                                </div>
+                                <div>
+                                    <Card.Title>Чашин Александр</Card.Title>
+                                    <Card.Text>ManForCoding@gmail.com</Card.Text>
+                                </div>
+                            </div>
+                        </div>
+                    </Offcanvas.Body>
+                </Navbar.Offcanvas>
+            </Container>
+        </Navbar>
     )
 }
